@@ -7,11 +7,31 @@ from typing import TYPE_CHECKING
 from homeassistant.helpers.device_registry import DeviceInfo
 from homeassistant.helpers.update_coordinator import CoordinatorEntity
 
-from .const import DOMAIN
+from .const import DOMAIN, MANUFACTURER
 
 if TYPE_CHECKING:
     from .coordinator import SupermicroRedfishCoordinator
     from .data import CoordinatorData
+
+
+def _get_device_name(data: CoordinatorData, host: str) -> str:
+    """Get best available device name using fallback chain.
+
+    Priority:
+    1. Chassis serial number (if set by user in BIOS)
+    2. OEM Board serial number (hardware-fixed, always available)
+    3. Host as last fallback
+    """
+    if data.chassis.serial_number:
+        return f"{MANUFACTURER} {data.chassis.serial_number}"
+    if data.chassis.oem.board_serial_number:
+        return f"{MANUFACTURER} {data.chassis.oem.board_serial_number}"
+    return f"{MANUFACTURER} Server ({host})"
+
+
+def _get_serial_number(data: CoordinatorData) -> str | None:
+    """Get best available serial number for device registry."""
+    return data.chassis.serial_number or data.chassis.oem.board_serial_number
 
 
 class SupermicroRedfishEntity(CoordinatorEntity["SupermicroRedfishCoordinator"]):
@@ -35,23 +55,17 @@ class SupermicroRedfishEntity(CoordinatorEntity["SupermicroRedfishCoordinator"])
     def device_info(self) -> DeviceInfo:
         """Return device information."""
         data: CoordinatorData = self.coordinator.data
-
-        # Use system UUID as device identifier
-        identifiers = {(DOMAIN, data.system.uuid)}
-
-        # Add serial number as secondary identifier if available
-        if data.system.serial_number:
-            identifiers.add((DOMAIN, data.system.serial_number))
+        host: str = self.coordinator.config_entry.data["host"]
 
         return DeviceInfo(
-            identifiers=identifiers,
-            name=f"{data.system.manufacturer} {data.system.model}",
-            manufacturer=data.system.manufacturer,
-            model=data.system.model,
-            serial_number=data.system.serial_number,
+            identifiers={(DOMAIN, data.system.uuid)},
+            name=_get_device_name(data, host),
+            manufacturer=data.chassis.manufacturer or MANUFACTURER,
+            model=data.chassis.model,
+            serial_number=_get_serial_number(data),
             sw_version=data.manager.firmware_version,
-            hw_version=data.system.bios_version,
-            configuration_url=f"https://{self.coordinator.config_entry.data['host']}",
+            hw_version=data.chassis.model,
+            configuration_url=f"https://{host}",
         )
 
     def _enable_burst_mode(self) -> None:

@@ -7,6 +7,9 @@ from typing import Final
 # Domain
 DOMAIN: Final = "supermicro_redfish"
 
+# Manufacturer
+MANUFACTURER: Final = "Supermicro"
+
 # Configuration keys
 CONF_VERIFY_SSL: Final = "verify_ssl"
 
