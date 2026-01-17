@@ -93,7 +93,7 @@ BUTTON_DESCRIPTIONS: tuple[SupermicroButtonEntityDescription, ...] = (
     SupermicroButtonEntityDescription(
         key=ENTITY_KEY_RESET_INTRUSION,
         translation_key="reset_intrusion",
-        entity_category=EntityCategory.DIAGNOSTIC,
+        entity_category=EntityCategory.CONFIG,
         entity_registry_enabled_default=False,
         press_fn=lambda client: client.async_reset_intrusion_sensor(),
         available_fn=lambda data: data.chassis.physical_security is not None,

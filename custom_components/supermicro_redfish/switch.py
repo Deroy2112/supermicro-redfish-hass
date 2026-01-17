@@ -44,6 +44,7 @@ SWITCH_DESCRIPTIONS: tuple[SupermicroSwitchEntityDescription, ...] = (
     SupermicroSwitchEntityDescription(
         key=ENTITY_KEY_INDICATOR_LED,
         translation_key="indicator_led",
+        entity_category=EntityCategory.CONFIG,
         value_fn=lambda data: data.system.indicator_led == IndicatorLED.LIT
         or data.system.indicator_led == IndicatorLED.BLINKING,
         turn_on_fn=lambda client: client.async_set_indicator_led(IndicatorLED.LIT),

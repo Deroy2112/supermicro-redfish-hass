@@ -82,13 +82,13 @@
         "name": "System power"
       },
       "system_health": {
-        "name": "System health problem"
+        "name": "System health"
       },
       "chassis_health": {
-        "name": "Chassis health problem"
+        "name": "Chassis health"
       },
       "bmc_health": {
-        "name": "BMC health problem"
+        "name": "BMC health"
       },
       "chassis_intrusion": {
         "name": "Chassis intrusion"
@@ -97,7 +97,7 @@
         "name": "License active"
       },
       "cmos_battery": {
-        "name": "CMOS battery problem"
+        "name": "CMOS battery"
       },
       "ntp_enabled": {
         "name": "NTP enabled"

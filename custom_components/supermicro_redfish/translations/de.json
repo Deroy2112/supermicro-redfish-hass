@@ -82,13 +82,13 @@
         "name": "Systemstrom"
       },
       "system_health": {
-        "name": "Systemzustandsproblem"
+        "name": "Systemzustand"
       },
       "chassis_health": {
-        "name": "Gehäusezustandsproblem"
+        "name": "Gehäusezustand"
       },
       "bmc_health": {
-        "name": "BMC-Zustandsproblem"
+        "name": "BMC-Zustand"
       },
       "chassis_intrusion": {
         "name": "Gehäuseeinbruch"
@@ -97,7 +97,7 @@
         "name": "Lizenz aktiv"
       },
       "cmos_battery": {
-        "name": "CMOS-Batterieproblem"
+        "name": "CMOS-Batterie"
       },
       "ntp_enabled": {
         "name": "NTP aktiviert"
