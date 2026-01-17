@@ -45,6 +45,7 @@ class SupermicroBinarySensorEntityDescription(BinarySensorEntityDescription):
 
 
 BINARY_SENSOR_DESCRIPTIONS: tuple[SupermicroBinarySensorEntityDescription, ...] = (
+    # Essential sensors - enabled by default
     SupermicroBinarySensorEntityDescription(
         key=ENTITY_KEY_SYSTEM_POWER,
         translation_key="system_power",
@@ -60,11 +61,13 @@ BINARY_SENSOR_DESCRIPTIONS: tuple[SupermicroBinarySensorEntityDescription, ...] 
         if data.system.status.health
         else None,
     ),
+    # Diagnostic sensors - disabled by default
     SupermicroBinarySensorEntityDescription(
         key=ENTITY_KEY_CHASSIS_HEALTH,
         translation_key="chassis_health",
         device_class=BinarySensorDeviceClass.PROBLEM,
         entity_category=EntityCategory.DIAGNOSTIC,
+        entity_registry_enabled_default=False,
         value_fn=lambda data: data.chassis.status.health != Health.OK
         if data.chassis.status.health
         else None,
@@ -74,6 +77,7 @@ BINARY_SENSOR_DESCRIPTIONS: tuple[SupermicroBinarySensorEntityDescription, ...] 
         translation_key="bmc_health",
         device_class=BinarySensorDeviceClass.PROBLEM,
         entity_category=EntityCategory.DIAGNOSTIC,
+        entity_registry_enabled_default=False,
         value_fn=lambda data: data.manager.status.health != Health.OK
         if data.manager.status.health
         else None,
@@ -83,6 +87,7 @@ BINARY_SENSOR_DESCRIPTIONS: tuple[SupermicroBinarySensorEntityDescription, ...] 
         translation_key="chassis_intrusion",
         device_class=BinarySensorDeviceClass.TAMPER,
         entity_category=EntityCategory.DIAGNOSTIC,
+        entity_registry_enabled_default=False,
         value_fn=lambda data: data.chassis.physical_security.intrusion_sensor
         != IntrusionSensor.NORMAL,
     ),
@@ -90,6 +95,7 @@ BINARY_SENSOR_DESCRIPTIONS: tuple[SupermicroBinarySensorEntityDescription, ...] 
         key=ENTITY_KEY_LICENSE,
         translation_key="license_active",
         entity_category=EntityCategory.DIAGNOSTIC,
+        entity_registry_enabled_default=False,
         value_fn=lambda data: data.license.is_licensed,
         available_fn=lambda data: data.license.is_valid,
     ),
@@ -98,6 +104,7 @@ BINARY_SENSOR_DESCRIPTIONS: tuple[SupermicroBinarySensorEntityDescription, ...] 
         translation_key="cmos_battery",
         device_class=BinarySensorDeviceClass.PROBLEM,
         entity_category=EntityCategory.DIAGNOSTIC,
+        entity_registry_enabled_default=False,
         value_fn=lambda data: not data.power.battery.is_healthy
         if data.power.battery
         else None,
@@ -107,6 +114,7 @@ BINARY_SENSOR_DESCRIPTIONS: tuple[SupermicroBinarySensorEntityDescription, ...] 
         key=ENTITY_KEY_NTP_ENABLED,
         translation_key="ntp_enabled",
         entity_category=EntityCategory.DIAGNOSTIC,
+        entity_registry_enabled_default=False,
         value_fn=lambda data: data.ntp.enabled,
         available_fn=lambda data: data.ntp.is_valid,
     ),
@@ -114,6 +122,7 @@ BINARY_SENSOR_DESCRIPTIONS: tuple[SupermicroBinarySensorEntityDescription, ...] 
         key=ENTITY_KEY_LLDP_ENABLED,
         translation_key="lldp_enabled",
         entity_category=EntityCategory.DIAGNOSTIC,
+        entity_registry_enabled_default=False,
         value_fn=lambda data: data.lldp.enabled,
         available_fn=lambda data: data.lldp.is_valid,
     ),

@@ -40,20 +40,21 @@ class SupermicroSwitchEntityDescription(SwitchEntityDescription):
 
 
 SWITCH_DESCRIPTIONS: tuple[SupermicroSwitchEntityDescription, ...] = (
+    # Essential switches - enabled by default
     SupermicroSwitchEntityDescription(
         key=ENTITY_KEY_INDICATOR_LED,
         translation_key="indicator_led",
-        icon="mdi:lightbulb",
         value_fn=lambda data: data.system.indicator_led == IndicatorLED.LIT
         or data.system.indicator_led == IndicatorLED.BLINKING,
         turn_on_fn=lambda client: client.async_set_indicator_led(IndicatorLED.LIT),
         turn_off_fn=lambda client: client.async_set_indicator_led(IndicatorLED.OFF),
     ),
+    # Protocol switches - disabled by default
     SupermicroSwitchEntityDescription(
         key=ENTITY_KEY_HTTP_PROTOCOL,
         translation_key="http_protocol",
-        icon="mdi:web",
         entity_category=EntityCategory.CONFIG,
+        entity_registry_enabled_default=False,
         value_fn=lambda data: data.network_protocol.http.protocol_enabled,
         turn_on_fn=lambda client: client.async_set_protocol_enabled("HTTP", True),
         turn_off_fn=lambda client: client.async_set_protocol_enabled("HTTP", False),
@@ -62,8 +63,8 @@ SWITCH_DESCRIPTIONS: tuple[SupermicroSwitchEntityDescription, ...] = (
     SupermicroSwitchEntityDescription(
         key=ENTITY_KEY_SSH_PROTOCOL,
         translation_key="ssh_protocol",
-        icon="mdi:console",
         entity_category=EntityCategory.CONFIG,
+        entity_registry_enabled_default=False,
         value_fn=lambda data: data.network_protocol.ssh.protocol_enabled,
         turn_on_fn=lambda client: client.async_set_protocol_enabled("SSH", True),
         turn_off_fn=lambda client: client.async_set_protocol_enabled("SSH", False),
@@ -72,8 +73,8 @@ SWITCH_DESCRIPTIONS: tuple[SupermicroSwitchEntityDescription, ...] = (
     SupermicroSwitchEntityDescription(
         key=ENTITY_KEY_IPMI_PROTOCOL,
         translation_key="ipmi_protocol",
-        icon="mdi:server-network",
         entity_category=EntityCategory.CONFIG,
+        entity_registry_enabled_default=False,
         value_fn=lambda data: data.network_protocol.ipmi.protocol_enabled,
         turn_on_fn=lambda client: client.async_set_protocol_enabled("IPMI", True),
         turn_off_fn=lambda client: client.async_set_protocol_enabled("IPMI", False),
@@ -82,8 +83,8 @@ SWITCH_DESCRIPTIONS: tuple[SupermicroSwitchEntityDescription, ...] = (
     SupermicroSwitchEntityDescription(
         key=ENTITY_KEY_SNMP_PROTOCOL,
         translation_key="snmp_protocol",
-        icon="mdi:network",
         entity_category=EntityCategory.CONFIG,
+        entity_registry_enabled_default=False,
         value_fn=lambda data: data.network_protocol.snmp.protocol_enabled,
         turn_on_fn=lambda client: client.async_set_protocol_enabled("SNMP", True),
         turn_off_fn=lambda client: client.async_set_protocol_enabled("SNMP", False),

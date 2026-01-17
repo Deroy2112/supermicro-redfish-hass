@@ -45,22 +45,20 @@ class SupermicroButtonEntityDescription(ButtonEntityDescription):
 
 
 BUTTON_DESCRIPTIONS: tuple[SupermicroButtonEntityDescription, ...] = (
+    # Essential power buttons - enabled by default
     SupermicroButtonEntityDescription(
         key=ENTITY_KEY_POWER_ON,
         translation_key="power_on",
-        icon="mdi:power",
         press_fn=lambda client: client.async_system_reset(ResetType.ON),
     ),
     SupermicroButtonEntityDescription(
         key=ENTITY_KEY_POWER_OFF,
         translation_key="power_off",
-        icon="mdi:power-off",
         press_fn=lambda client: client.async_system_reset(ResetType.FORCE_OFF),
     ),
     SupermicroButtonEntityDescription(
         key=ENTITY_KEY_GRACEFUL_SHUTDOWN,
         translation_key="graceful_shutdown",
-        icon="mdi:power-sleep",
         press_fn=lambda client: client.async_system_reset(ResetType.GRACEFUL_SHUTDOWN),
     ),
     SupermicroButtonEntityDescription(
@@ -69,10 +67,12 @@ BUTTON_DESCRIPTIONS: tuple[SupermicroButtonEntityDescription, ...] = (
         device_class=ButtonDeviceClass.RESTART,
         press_fn=lambda client: client.async_system_reset(ResetType.GRACEFUL_RESTART),
     ),
+    # Advanced buttons - disabled by default
     SupermicroButtonEntityDescription(
         key=ENTITY_KEY_FORCE_RESTART,
         translation_key="force_restart",
         device_class=ButtonDeviceClass.RESTART,
+        entity_registry_enabled_default=False,
         press_fn=lambda client: client.async_system_reset(ResetType.FORCE_RESTART),
     ),
     SupermicroButtonEntityDescription(
@@ -80,22 +80,23 @@ BUTTON_DESCRIPTIONS: tuple[SupermicroButtonEntityDescription, ...] = (
         translation_key="bmc_restart",
         device_class=ButtonDeviceClass.RESTART,
         entity_category=EntityCategory.CONFIG,
+        entity_registry_enabled_default=False,
         press_fn=lambda client: client.async_manager_reset(ResetType.GRACEFUL_RESTART),
     ),
     SupermicroButtonEntityDescription(
         key=ENTITY_KEY_SEND_NMI,
         translation_key="send_nmi",
-        icon="mdi:alert-octagon",
         entity_category=EntityCategory.CONFIG,
+        entity_registry_enabled_default=False,
         press_fn=lambda client: client.async_system_reset(ResetType.NMI),
     ),
     SupermicroButtonEntityDescription(
         key=ENTITY_KEY_RESET_INTRUSION,
         translation_key="reset_intrusion",
-        icon="mdi:shield-refresh",
         entity_category=EntityCategory.DIAGNOSTIC,
+        entity_registry_enabled_default=False,
         press_fn=lambda client: client.async_reset_intrusion_sensor(),
-        available_fn=lambda data: data.chassis.is_intruded,
+        available_fn=lambda data: data.chassis.physical_security is not None,
     ),
 )
 

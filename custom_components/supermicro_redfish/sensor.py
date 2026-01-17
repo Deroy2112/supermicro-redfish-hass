@@ -47,6 +47,7 @@ class SupermicroSensorEntityDescription(SensorEntityDescription):
 
 
 SENSOR_DESCRIPTIONS: tuple[SupermicroSensorEntityDescription, ...] = (
+    # Essential sensors - enabled by default
     SupermicroSensorEntityDescription(
         key=ENTITY_KEY_POWER_CONSUMPTION,
         translation_key="power_consumption",
@@ -56,22 +57,26 @@ SENSOR_DESCRIPTIONS: tuple[SupermicroSensorEntityDescription, ...] = (
         value_fn=lambda data: data.power.total_power_consumed_watts,
         available_fn=lambda data: data.power.total_power_consumed_watts is not None,
     ),
+    # Diagnostic sensors - disabled by default
     SupermicroSensorEntityDescription(
         key=ENTITY_KEY_BIOS_VERSION,
         translation_key="bios_version",
         entity_category=EntityCategory.DIAGNOSTIC,
+        entity_registry_enabled_default=False,
         value_fn=lambda data: data.system.bios_version,
     ),
     SupermicroSensorEntityDescription(
         key=ENTITY_KEY_BMC_FIRMWARE,
         translation_key="bmc_firmware",
         entity_category=EntityCategory.DIAGNOSTIC,
+        entity_registry_enabled_default=False,
         value_fn=lambda data: data.manager.firmware_version,
     ),
     SupermicroSensorEntityDescription(
         key=ENTITY_KEY_POST_CODE,
         translation_key="post_code",
         entity_category=EntityCategory.DIAGNOSTIC,
+        entity_registry_enabled_default=False,
         value_fn=lambda data: data.snooping.post_code,
         available_fn=lambda data: data.snooping.is_valid,
     ),
@@ -82,6 +87,7 @@ SENSOR_DESCRIPTIONS: tuple[SupermicroSensorEntityDescription, ...] = (
         state_class=SensorStateClass.MEASUREMENT,
         native_unit_of_measurement=UnitOfTime.MILLISECONDS,
         entity_category=EntityCategory.DIAGNOSTIC,
+        entity_registry_enabled_default=False,
         value_fn=lambda _data: None,  # Handled separately
     ),
 )
@@ -255,6 +261,7 @@ class VoltageSensor(SupermicroRedfishSensorEntity, SensorEntity):
     _attr_state_class = SensorStateClass.MEASUREMENT
     _attr_native_unit_of_measurement = UnitOfElectricPotential.VOLT
     _attr_entity_category = EntityCategory.DIAGNOSTIC
+    _attr_entity_registry_enabled_default = False
 
     def __init__(
         self,

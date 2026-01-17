@@ -72,7 +72,7 @@ class FanModeSelect(SupermicroRedfishEntity, SelectEntity):
 
     _attr_translation_key = "fan_mode"
     _attr_entity_category = EntityCategory.CONFIG
-    _attr_icon = "mdi:fan"
+    _attr_entity_registry_enabled_default = False
 
     def __init__(self, coordinator: SupermicroRedfishCoordinator) -> None:
         """Initialize the fan mode select."""
@@ -116,7 +116,7 @@ class BootSourceSelect(SupermicroRedfishEntity, SelectEntity):
 
     _attr_translation_key = "boot_source"
     _attr_entity_category = EntityCategory.CONFIG
-    _attr_icon = "mdi:boot"
+    _attr_entity_registry_enabled_default = False
 
     def __init__(self, coordinator: SupermicroRedfishCoordinator) -> None:
         """Initialize the boot source select."""
