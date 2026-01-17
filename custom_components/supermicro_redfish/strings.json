@@ -1,0 +1,178 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Connect to Supermicro BMC",
+        "description": "Enter your Supermicro BMC connection details.",
+        "data": {
+          "host": "Host",
+          "username": "Username",
+          "password": "Password",
+          "verify_ssl": "Verify SSL certificate"
+        }
+      },
+      "reauth_confirm": {
+        "title": "Re-authenticate",
+        "description": "The credentials for {host} are no longer valid. Please enter new credentials.",
+        "data": {
+          "username": "Username",
+          "password": "Password"
+        }
+      },
+      "reconfigure_confirm": {
+        "title": "Reconfigure",
+        "description": "Update connection settings for the Supermicro BMC.",
+        "data": {
+          "host": "Host",
+          "username": "Username",
+          "password": "Password",
+          "verify_ssl": "Verify SSL certificate"
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "Failed to connect to BMC",
+      "invalid_auth": "Invalid authentication credentials",
+      "unknown": "Unexpected error occurred"
+    },
+    "abort": {
+      "already_configured": "This BMC is already configured",
+      "reauth_successful": "Re-authentication successful",
+      "reconfigure_successful": "Reconfiguration successful"
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Options",
+        "description": "Configure polling intervals and request limits.",
+        "data": {
+          "scan_interval": "Scan interval (seconds)",
+          "burst_interval": "Burst interval (seconds)",
+          "burst_duration": "Burst duration (seconds)",
+          "static_interval": "Static data interval (seconds)",
+          "max_concurrent_requests": "Max concurrent requests"
+        }
+      }
+    }
+  },
+  "issues": {
+    "connection_failed": {
+      "title": "Connection failed to {host}",
+      "description": "Failed to connect to the Supermicro BMC at {host} after {error_count} attempts. Please check the network connection and credentials."
+    }
+  },
+  "repairs": {
+    "connection_failed": {
+      "title": "Connection failed",
+      "description": "The connection to the Supermicro BMC failed. Please verify your credentials."
+    }
+  },
+  "exceptions": {
+    "auth_failed": {
+      "message": "Authentication failed. Please check your credentials."
+    },
+    "connection_failed": {
+      "message": "Failed to connect to {host}. Please check the network connection."
+    }
+  },
+  "entity": {
+    "binary_sensor": {
+      "system_power": {
+        "name": "System power"
+      },
+      "system_health": {
+        "name": "System health problem"
+      },
+      "chassis_health": {
+        "name": "Chassis health problem"
+      },
+      "bmc_health": {
+        "name": "BMC health problem"
+      },
+      "chassis_intrusion": {
+        "name": "Chassis intrusion"
+      },
+      "license_active": {
+        "name": "License active"
+      },
+      "cmos_battery": {
+        "name": "CMOS battery problem"
+      },
+      "ntp_enabled": {
+        "name": "NTP enabled"
+      },
+      "lldp_enabled": {
+        "name": "LLDP enabled"
+      }
+    },
+    "sensor": {
+      "power_consumption": {
+        "name": "Power consumption"
+      },
+      "bios_version": {
+        "name": "BIOS version"
+      },
+      "bmc_firmware": {
+        "name": "BMC firmware"
+      },
+      "post_code": {
+        "name": "POST code"
+      },
+      "api_response_time": {
+        "name": "API response time"
+      }
+    },
+    "switch": {
+      "indicator_led": {
+        "name": "Indicator LED"
+      },
+      "http_protocol": {
+        "name": "HTTP protocol"
+      },
+      "ssh_protocol": {
+        "name": "SSH protocol"
+      },
+      "ipmi_protocol": {
+        "name": "IPMI protocol"
+      },
+      "snmp_protocol": {
+        "name": "SNMP protocol"
+      }
+    },
+    "select": {
+      "fan_mode": {
+        "name": "Fan mode"
+      },
+      "boot_source": {
+        "name": "Boot source"
+      }
+    },
+    "button": {
+      "power_on": {
+        "name": "Power on"
+      },
+      "power_off": {
+        "name": "Power off"
+      },
+      "graceful_shutdown": {
+        "name": "Graceful shutdown"
+      },
+      "graceful_restart": {
+        "name": "Graceful restart"
+      },
+      "force_restart": {
+        "name": "Force restart"
+      },
+      "bmc_restart": {
+        "name": "BMC restart"
+      },
+      "send_nmi": {
+        "name": "Send NMI"
+      },
+      "reset_intrusion": {
+        "name": "Reset intrusion"
+      }
+    }
+  }
+}

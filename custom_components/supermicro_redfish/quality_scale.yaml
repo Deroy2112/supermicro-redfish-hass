@@ -1,0 +1,154 @@
+# Home Assistant Quality Scale - Platinum
+# https://developers.home-assistant.io/docs/integration_quality_scale_index
+
+rules:
+  # Bronze
+  action-setup:
+    status: exempt
+    comment: No custom actions/services defined
+  appropriate-polling:
+    status: done
+    comment: Configurable polling intervals with burst mode for user actions
+  brands:
+    status: done
+  common-modules:
+    status: done
+    comment: Uses DataUpdateCoordinator, config entries, device registry
+  config-flow-test-coverage:
+    status: todo
+    comment: Tests need to be implemented
+  config-flow:
+    status: done
+    comment: User, reauth, reconfigure, and options flows implemented
+  dependency-transparency:
+    status: done
+    comment: supermicro-redfish-client is the only external dependency
+  docs-actions:
+    status: exempt
+    comment: No custom actions/services defined
+  docs-high-level-description:
+    status: todo
+    comment: README documentation needed
+  docs-installation-instructions:
+    status: todo
+    comment: README documentation needed
+  docs-removal-instructions:
+    status: todo
+    comment: README documentation needed
+  entity-event-setup:
+    status: exempt
+    comment: No event entities
+  entity-unique-id:
+    status: done
+    comment: Unique IDs based on entry ID and entity key
+  has-entity-name:
+    status: done
+    comment: All entities use _attr_has_entity_name = True
+  runtime-data:
+    status: done
+    comment: Using entry.runtime_data with typed dataclass
+  test-before-configure:
+    status: done
+    comment: Connection test in config flow before entry creation
+  test-before-setup:
+    status: done
+    comment: Connection test in async_setup_entry
+
+  # Silver
+  config-entry-unloading:
+    status: done
+    comment: Proper unloading with client disconnect
+  log-when-unavailable:
+    status: done
+    comment: Logging in coordinator on connection failures
+  entity-unavailable:
+    status: done
+    comment: Entities use available property based on data validity
+  action-exceptions:
+    status: done
+    comment: Proper exception handling in entity actions
+  reauthentication-flow:
+    status: done
+    comment: Reauth flow triggers on ConfigEntryAuthFailed
+  parallel-updates:
+    status: done
+    comment: Coordinator handles parallel updates with semaphore
+  test-coverage:
+    status: todo
+    comment: Unit tests need to be implemented
+
+  # Gold
+  devices:
+    status: done
+    comment: Single device per config entry with full device info
+  diagnostics:
+    status: done
+    comment: Full diagnostics with sensitive data redaction
+  discovery-update-info:
+    status: exempt
+    comment: No discovery support (BMC requires authentication)
+  discovery:
+    status: exempt
+    comment: No discovery support (BMC requires authentication)
+  docs-data-update:
+    status: todo
+    comment: Documentation for polling behavior needed
+  docs-examples:
+    status: todo
+    comment: Usage examples needed
+  docs-known-limitations:
+    status: todo
+    comment: Limitations documentation needed
+  docs-supported-devices:
+    status: todo
+    comment: Supported devices documentation needed
+  docs-supported-functions:
+    status: todo
+    comment: Supported functions documentation needed
+  docs-troubleshooting:
+    status: todo
+    comment: Troubleshooting documentation needed
+  docs-use-cases:
+    status: todo
+    comment: Use cases documentation needed
+  dynamic-devices:
+    status: exempt
+    comment: Single device per entry
+  entity-category:
+    status: done
+    comment: Proper entity categories (CONFIG, DIAGNOSTIC)
+  entity-device-class:
+    status: done
+    comment: Appropriate device classes for all entities
+  entity-disabled-by-default:
+    status: done
+    comment: Diagnostic entities appropriate
+  entity-translations:
+    status: done
+    comment: Full translations in strings.json and de.json
+  exception-translations:
+    status: done
+    comment: Translated exceptions in config flow
+  icon-translations:
+    status: done
+    comment: Full icon translations in icons.json
+  reconfiguration-flow:
+    status: done
+    comment: Reconfigure flow for host/credential changes
+  repair-issues:
+    status: done
+    comment: Repair flow for connection failures
+  stale-devices:
+    status: exempt
+    comment: Single device per entry, removed on unload
+
+  # Platinum
+  async-dependency:
+    status: done
+    comment: aiosupermicro is fully async
+  inject-websession:
+    status: done
+    comment: Uses async_get_clientsession from Home Assistant
+  strict-typing:
+    status: done
+    comment: py.typed marker, TYPE_CHECKING imports

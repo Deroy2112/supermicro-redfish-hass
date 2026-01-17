@@ -1,0 +1,12 @@
+{
+  "domain": "supermicro_redfish",
+  "name": "Supermicro Redfish",
+  "codeowners": [],
+  "config_flow": true,
+  "documentation": "https://github.com/",
+  "integration_type": "device",
+  "iot_class": "local_polling",
+  "quality_scale": "platinum",
+  "requirements": ["supermicro-redfish-client>=1.0.0"],
+  "version": "2.0.0"
+}

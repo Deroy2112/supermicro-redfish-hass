@@ -1,0 +1,141 @@
+{
+  "entity": {
+    "binary_sensor": {
+      "system_power": {
+        "default": "mdi:power",
+        "state": {
+          "on": "mdi:power",
+          "off": "mdi:power-off"
+        }
+      },
+      "system_health": {
+        "default": "mdi:heart-pulse",
+        "state": {
+          "on": "mdi:alert-circle",
+          "off": "mdi:check-circle"
+        }
+      },
+      "chassis_health": {
+        "default": "mdi:server",
+        "state": {
+          "on": "mdi:alert-circle",
+          "off": "mdi:check-circle"
+        }
+      },
+      "bmc_health": {
+        "default": "mdi:chip",
+        "state": {
+          "on": "mdi:alert-circle",
+          "off": "mdi:check-circle"
+        }
+      },
+      "chassis_intrusion": {
+        "default": "mdi:shield-lock",
+        "state": {
+          "on": "mdi:shield-alert",
+          "off": "mdi:shield-check"
+        }
+      },
+      "license_active": {
+        "default": "mdi:license",
+        "state": {
+          "on": "mdi:license",
+          "off": "mdi:license-off"
+        }
+      },
+      "cmos_battery": {
+        "default": "mdi:battery",
+        "state": {
+          "on": "mdi:battery-alert",
+          "off": "mdi:battery"
+        }
+      },
+      "ntp_enabled": {
+        "default": "mdi:clock-outline",
+        "state": {
+          "on": "mdi:clock-check",
+          "off": "mdi:clock-outline"
+        }
+      },
+      "lldp_enabled": {
+        "default": "mdi:network",
+        "state": {
+          "on": "mdi:network",
+          "off": "mdi:network-off"
+        }
+      }
+    },
+    "sensor": {
+      "power_consumption": {
+        "default": "mdi:flash"
+      },
+      "bios_version": {
+        "default": "mdi:chip"
+      },
+      "bmc_firmware": {
+        "default": "mdi:memory"
+      },
+      "post_code": {
+        "default": "mdi:barcode"
+      },
+      "api_response_time": {
+        "default": "mdi:timer"
+      }
+    },
+    "switch": {
+      "indicator_led": {
+        "default": "mdi:lightbulb-outline",
+        "state": {
+          "on": "mdi:lightbulb-on",
+          "off": "mdi:lightbulb-outline"
+        }
+      },
+      "http_protocol": {
+        "default": "mdi:web"
+      },
+      "ssh_protocol": {
+        "default": "mdi:console"
+      },
+      "ipmi_protocol": {
+        "default": "mdi:server-network"
+      },
+      "snmp_protocol": {
+        "default": "mdi:network"
+      }
+    },
+    "select": {
+      "fan_mode": {
+        "default": "mdi:fan"
+      },
+      "boot_source": {
+        "default": "mdi:boot"
+      }
+    },
+    "button": {
+      "power_on": {
+        "default": "mdi:power"
+      },
+      "power_off": {
+        "default": "mdi:power-off"
+      },
+      "graceful_shutdown": {
+        "default": "mdi:power-sleep"
+      },
+      "graceful_restart": {
+        "default": "mdi:restart"
+      },
+      "force_restart": {
+        "default": "mdi:restart-alert"
+      },
+      "bmc_restart": {
+        "default": "mdi:restart"
+      },
+      "send_nmi": {
+        "default": "mdi:alert-octagon"
+      },
+      "reset_intrusion": {
+        "default": "mdi:shield-refresh"
+      }
+    }
+  }
+}

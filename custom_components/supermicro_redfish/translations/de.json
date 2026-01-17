@@ -1,0 +1,178 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Supermicro BMC verbinden",
+        "description": "Geben Sie Ihre Supermicro BMC-Verbindungsdaten ein.",
+        "data": {
+          "host": "Host",
+          "username": "Benutzername",
+          "password": "Passwort",
+          "verify_ssl": "SSL-Zertifikat verifizieren"
+        }
+      },
+      "reauth_confirm": {
+        "title": "Erneut authentifizieren",
+        "description": "Die Anmeldedaten für {host} sind nicht mehr gültig. Bitte geben Sie neue Anmeldedaten ein.",
+        "data": {
+          "username": "Benutzername",
+          "password": "Passwort"
+        }
+      },
+      "reconfigure_confirm": {
+        "title": "Neu konfigurieren",
+        "description": "Verbindungseinstellungen für den Supermicro BMC aktualisieren.",
+        "data": {
+          "host": "Host",
+          "username": "Benutzername",
+          "password": "Passwort",
+          "verify_ssl": "SSL-Zertifikat verifizieren"
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "Verbindung zum BMC fehlgeschlagen",
+      "invalid_auth": "Ungültige Anmeldedaten",
+      "unknown": "Unerwarteter Fehler aufgetreten"
+    },
+    "abort": {
+      "already_configured": "Dieser BMC ist bereits konfiguriert",
+      "reauth_successful": "Erneute Authentifizierung erfolgreich",
+      "reconfigure_successful": "Neukonfiguration erfolgreich"
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Optionen",
+        "description": "Polling-Intervalle und Anfragelimits konfigurieren.",
+        "data": {
+          "scan_interval": "Abfrageintervall (Sekunden)",
+          "burst_interval": "Burst-Intervall (Sekunden)",
+          "burst_duration": "Burst-Dauer (Sekunden)",
+          "static_interval": "Statisches Datenintervall (Sekunden)",
+          "max_concurrent_requests": "Max. gleichzeitige Anfragen"
+        }
+      }
+    }
+  },
+  "issues": {
+    "connection_failed": {
+      "title": "Verbindung zu {host} fehlgeschlagen",
+      "description": "Verbindung zum Supermicro BMC unter {host} nach {error_count} Versuchen fehlgeschlagen. Bitte prüfen Sie die Netzwerkverbindung und Anmeldedaten."
+    }
+  },
+  "repairs": {
+    "connection_failed": {
+      "title": "Verbindung fehlgeschlagen",
+      "description": "Die Verbindung zum Supermicro BMC ist fehlgeschlagen. Bitte überprüfen Sie Ihre Anmeldedaten."
+    }
+  },
+  "exceptions": {
+    "auth_failed": {
+      "message": "Authentifizierung fehlgeschlagen. Bitte überprüfen Sie Ihre Anmeldedaten."
+    },
+    "connection_failed": {
+      "message": "Verbindung zu {host} fehlgeschlagen. Bitte prüfen Sie die Netzwerkverbindung."
+    }
+  },
+  "entity": {
+    "binary_sensor": {
+      "system_power": {
+        "name": "Systemstrom"
+      },
+      "system_health": {
+        "name": "Systemzustandsproblem"
+      },
+      "chassis_health": {
+        "name": "Gehäusezustandsproblem"
+      },
+      "bmc_health": {
+        "name": "BMC-Zustandsproblem"
+      },
+      "chassis_intrusion": {
+        "name": "Gehäuseeinbruch"
+      },
+      "license_active": {
+        "name": "Lizenz aktiv"
+      },
+      "cmos_battery": {
+        "name": "CMOS-Batterieproblem"
+      },
+      "ntp_enabled": {
+        "name": "NTP aktiviert"
+      },
+      "lldp_enabled": {
+        "name": "LLDP aktiviert"
+      }
+    },
+    "sensor": {
+      "power_consumption": {
+        "name": "Stromverbrauch"
+      },
+      "bios_version": {
+        "name": "BIOS-Version"
+      },
+      "bmc_firmware": {
+        "name": "BMC-Firmware"
+      },
+      "post_code": {
+        "name": "POST-Code"
+      },
+      "api_response_time": {
+        "name": "API-Antwortzeit"
+      }
+    },
+    "switch": {
+      "indicator_led": {
+        "name": "Indikator-LED"
+      },
+      "http_protocol": {
+        "name": "HTTP-Protokoll"
+      },
+      "ssh_protocol": {
+        "name": "SSH-Protokoll"
+      },
+      "ipmi_protocol": {
+        "name": "IPMI-Protokoll"
+      },
+      "snmp_protocol": {
+        "name": "SNMP-Protokoll"
+      }
+    },
+    "select": {
+      "fan_mode": {
+        "name": "Lüftermodus"
+      },
+      "boot_source": {
+        "name": "Boot-Quelle"
+      }
+    },
+    "button": {
+      "power_on": {
+        "name": "Einschalten"
+      },
+      "power_off": {
+        "name": "Ausschalten"
+      },
+      "graceful_shutdown": {
+        "name": "Sanftes Herunterfahren"
+      },
+      "graceful_restart": {
+        "name": "Sanfter Neustart"
+      },
+      "force_restart": {
+        "name": "Erzwungener Neustart"
+      },
+      "bmc_restart": {
+        "name": "BMC-Neustart"
+      },
+      "send_nmi": {
+        "name": "NMI senden"
+      },
+      "reset_intrusion": {
+        "name": "Einbruch zurücksetzen"
+      }
+    }
+  }
+}
