@@ -14,24 +14,14 @@ if TYPE_CHECKING:
     from .data import CoordinatorData
 
 
-def _get_device_name(data: CoordinatorData, host: str) -> str:
-    """Get best available device name using fallback chain.
-
-    Priority:
-    1. Chassis serial number (if set by user in BIOS)
-    2. OEM Board serial number (hardware-fixed, always available)
-    3. Host as last fallback
-    """
-    if data.chassis.serial_number:
-        return f"{MANUFACTURER} {data.chassis.serial_number}"
-    if data.chassis.oem.board_serial_number:
-        return f"{MANUFACTURER} {data.chassis.oem.board_serial_number}"
-    return f"{MANUFACTURER} Server ({host})"
+def _get_device_name(data: CoordinatorData) -> str:
+    """Get device name from OEM board serial number."""
+    return f"{MANUFACTURER} {data.chassis.oem.board_serial_number}"
 
 
 def _get_serial_number(data: CoordinatorData) -> str | None:
-    """Get best available serial number for device registry."""
-    return data.chassis.serial_number or data.chassis.oem.board_serial_number
+    """Get OEM board serial number for device registry."""
+    return data.chassis.oem.board_serial_number
 
 
 class SupermicroRedfishEntity(CoordinatorEntity["SupermicroRedfishCoordinator"]):
@@ -59,7 +49,7 @@ class SupermicroRedfishEntity(CoordinatorEntity["SupermicroRedfishCoordinator"])
 
         return DeviceInfo(
             identifiers={(DOMAIN, data.system.uuid)},
-            name=_get_device_name(data, host),
+            name=_get_device_name(data),
             manufacturer=data.chassis.manufacturer or MANUFACTURER,
             model=data.chassis.model,
             serial_number=_get_serial_number(data),
