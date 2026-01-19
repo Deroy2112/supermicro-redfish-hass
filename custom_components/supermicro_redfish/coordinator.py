@@ -107,15 +107,12 @@ class SupermicroRedfishCoordinator(DataUpdateCoordinator[CoordinatorData]):
     async def _async_update_data(self) -> CoordinatorData:
         """Fetch data from the API."""
         try:
-            # Fetch dynamic data
+            # Always fetch dynamic data
             dynamic = await self._client.async_get_dynamic_data()
 
-            # Fetch static data if needed
+            # Fetch static data if needed (includes OEM endpoints)
             if self._should_update_static_data() or self._static_data_cache is None:
                 static = await self._client.async_get_static_data()
-                ntp = await self._client.async_get_ntp()
-                lldp = await self._client.async_get_lldp()
-                network_protocol = await self._client.async_get_network_protocol()
                 self._last_static_update = time.time()
 
                 data = CoordinatorData(
@@ -125,11 +122,11 @@ class SupermicroRedfishCoordinator(DataUpdateCoordinator[CoordinatorData]):
                     thermal=dynamic.thermal,
                     power=dynamic.power,
                     fan_mode=dynamic.fan_mode,
-                    ntp=ntp,
-                    lldp=lldp,
+                    ntp=static.ntp,
+                    lldp=static.lldp,
                     snooping=dynamic.snooping,
                     license=static.license,
-                    network_protocol=network_protocol,
+                    network_protocol=static.network_protocol,
                 )
                 self._static_data_cache = data
             else:
